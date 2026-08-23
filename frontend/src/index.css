@@ -1,0 +1,251 @@
+/* Custom Global Styles for Virtual Unavagam */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --primary-orange: #ff7a00;
+  --primary-orange-hover: #e65c00;
+  --deep-brown: #3d2314;
+  --warm-cream: #fdfbf7;
+  --dark-charcoal: #121212;
+  --dark-surface: #1e1e1e;
+  --text-light: #222222;
+  --text-dark: #e0e0e0;
+  
+  --bg-color: var(--warm-cream);
+  --card-bg: #ffffff;
+  --text-color: var(--text-light);
+  --border-color: #f1ebd9;
+  --nav-bg: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme='dark'] {
+  --bg-color: var(--dark-charcoal);
+  --card-bg: var(--dark-surface);
+  --text-color: var(--text-dark);
+  --border-color: #2c2c2c;
+  --nav-bg: rgba(18, 18, 18, 0.9);
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Common Classes */
+.float-animation {
+  animation: float 4s ease-in-out infinite;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.slide-in {
+  animation: slideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Orange Buttons & Badges */
+.btn-orange {
+  background-color: var(--primary-orange);
+  color: white;
+  border: none;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.btn-orange:hover {
+  background-color: var(--primary-orange-hover);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 122, 0, 0.4);
+}
+
+.btn-orange:active {
+  transform: translateY(0);
+}
+
+.btn-orange-outline {
+  background-color: transparent;
+  color: var(--primary-orange);
+  border: 2px solid var(--primary-orange);
+  font-weight: 600;
+  padding: 8px 22px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.btn-orange-outline:hover {
+  background-color: var(--primary-orange);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Food cards custom styling */
+.food-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.food-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(255, 122, 0, 0.12);
+}
+
+.food-card-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding-top: 66.66%; /* 3:2 Aspect Ratio */
+}
+
+.food-card-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.food-card:hover .food-card-img {
+  transform: scale(1.08);
+}
+
+/* Quantity controls UI */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: var(--bg-color);
+}
+
+.quantity-btn {
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-orange);
+  font-weight: bold;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.quantity-btn:hover {
+  background-color: rgba(255, 122, 0, 0.1);
+}
+
+.quantity-value {
+  padding: 0 10px;
+  font-weight: 600;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Glassmorphism custom components */
+.glass-nav {
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Scrollbars styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-orange);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-orange-hover);
+}
+/* --- CORRECTED DARK MODE TEXT OVERRIDES --- */
+
+/* Force standard body text elements to respect dark mode */
+[data-theme='dark'] p, 
+[data-theme='dark'] span, 
+[data-theme='dark'] label, 
+[data-theme='dark'] small {
+  color: var(--text-color) !important;
+}
+
+/* Ensure headings explicitly use the high-contrast text variable */
+[data-theme='dark'] h1, 
+[data-theme='dark'] h2, 
+[data-theme='dark'] h3, 
+[data-theme='dark'] h4, 
+[data-theme='dark'] h5, 
+[data-theme='dark'] h6 {
+  color: var(--text-color) !important;
+}
+
+/* Fix muted text in dark mode to be clearly legible */
+[data-theme='dark'] .text-muted {
+  color: #b0b0b0 !important;
+}
+
+/* Catches Bootstrap components (like small/secondary text) that rely on its CSS variable */
+[data-theme='dark'] {
+  --bs-secondary-color: #b0b0b0;
+  --bs-secondary-bg: var(--dark-surface);
+}
+
+/* Fix Bootstrap .card components that don't follow the app's dark/light theme vars */
+[data-theme='dark'] .card {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+
+/* Fix MUI components using MUI's own stable class names */
+[data-theme='dark'] .MuiCard-root {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+
+[data-theme='dark'] .MuiTypography-root {
+  color: var(--text-color) !important;
+}
